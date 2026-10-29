@@ -32,7 +32,6 @@ El proyecto debe estar en un repositorio GitHub cuya rama principal sea `main`. 
 
 | Secret | Valor |
 |---|---|
-| `DOCKERHUB_USERNAME` | usuario de Docker Hub |
 | `DOCKERHUB_TOKEN` | access token creado en Docker Hub (no la contraseña) |
 | `VITE_SUPABASE_URL` | URL pública del proyecto Supabase |
 | `VITE_SUPABASE_ANON_KEY` | clave pública `anon` de Supabase |
@@ -52,8 +51,8 @@ git push -u origin main
 
 Cada push a `main` ejecutará `.github/workflows/docker-publish.yml` y publicará:
 
-- `DOCKERHUB_USERNAME/atipax-cafeteria:latest`
-- `DOCKERHUB_USERNAME/atipax-cafeteria:sha-<commit>`
+- `t3blancofernande/atipax-cafeteria:latest`
+- `t3blancofernande/atipax-cafeteria:sha-<commit>`
 
 **Capturas requeridas:**
 
@@ -109,11 +108,11 @@ sudo systemctl enable --now docker
 sudo docker --version
 ```
 
-Descargar y ejecutar la imagen (reemplazar `USUARIO_DOCKERHUB`):
+Descargar y ejecutar la imagen:
 
 ```bash
-sudo docker pull USUARIO_DOCKERHUB/atipax-cafeteria:latest
-sudo docker run -d --name atipax-cafeteria --restart unless-stopped -p 80:80 USUARIO_DOCKERHUB/atipax-cafeteria:latest
+sudo docker pull t3blancofernande/atipax-cafeteria:latest
+sudo docker run -d --name atipax-cafeteria --restart unless-stopped -p 80:80 t3blancofernande/atipax-cafeteria:latest
 sudo docker ps
 sudo docker logs --tail 30 atipax-cafeteria
 curl -I http://localhost
@@ -131,9 +130,9 @@ Abrir en el navegador: `http://IP_PUBLICA_OCI`.
 Para actualizar luego de otro push a `main`:
 
 ```bash
-sudo docker pull USUARIO_DOCKERHUB/atipax-cafeteria:latest
+sudo docker pull t3blancofernande/atipax-cafeteria:latest
 sudo docker rm -f atipax-cafeteria
-sudo docker run -d --name atipax-cafeteria --restart unless-stopped -p 80:80 USUARIO_DOCKERHUB/atipax-cafeteria:latest
+sudo docker run -d --name atipax-cafeteria --restart unless-stopped -p 80:80 t3blancofernande/atipax-cafeteria:latest
 ```
 
 **Capturas requeridas:**
