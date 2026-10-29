@@ -1,0 +1,13 @@
+services:
+  web:
+    build:
+      context: .
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:-}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:-}
+    image: atipax-cafeteria:local
+    container_name: atipax-cafeteria
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+
